@@ -2,7 +2,6 @@
 # -*- ruby -*-
 
 require 'rake/clean'
-<<<<<<< HEAD
 require 'rake/testtask'
 
 task :default => :test
@@ -11,7 +10,6 @@ task :test do
   ruby 'path_to_enlightenment.rb'
 end
 
-=======
 
 SRC_DIR      = 'src'
 PROB_DIR     = 'koans'
@@ -167,4 +165,3 @@ task :run_all do
     puts "No Results for #{requested_impl}" unless results.detect { |x| x.first =~ impl_pattern }
   end
 end
->>>>>>> 8068f1f106c8f535bded1b7b6b01047f76a6bf43
