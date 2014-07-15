@@ -14,14 +14,19 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  case [a,b,c].uniq.length
-  when 1
-    :equilateral
-  when 2
-    :isosceles
-  when 3
-    :scalene
-  end
+
+  a,b,c = sides = [a,b,c].sort
+
+  smallest_side_is_greater_than_zero = a > 0
+
+  triangle_inequality_is_satisfied = a + b > c 
+
+  raise TriangleError unless triangle_inequality_is_satisfied
+
+  raise TriangleError unless smallest_side_is_greater_than_zero
+
+  return [:equilateral, :isosceles, :scalene][(sides.uniq.length)-1]
+
 end
 
 # Error class used in part 2.  No need to change this code.
