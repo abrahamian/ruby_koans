@@ -21,9 +21,7 @@ def triangle(a, b, c)
 
   triangle_inequality_is_satisfied = a + b > c 
 
-  raise TriangleError unless triangle_inequality_is_satisfied
-
-  raise TriangleError unless smallest_side_is_greater_than_zero
+  raise TriangleError unless triangle_inequality_is_satisfied and smallest_side_is_greater_than_zero
 
   return [:equilateral, :isosceles, :scalene][(sides.uniq.length)-1]
 
