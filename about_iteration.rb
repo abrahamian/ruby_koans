@@ -126,6 +126,6 @@ class AboutIteration < Neo::Koan
   #
   # When you get to the "AboutSandwichCode" koan, recheck your answer.
 
-  # Not sure, will get back to this later.
+  # Answer: Not sure, will get back to this later.
 
 end
