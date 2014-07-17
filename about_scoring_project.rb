@@ -30,8 +30,61 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  Greed.new(dice).calculate_score
 end
+
+
+class Greed
+
+  def initialize(dice)
+    @dice = dice
+  end
+
+  def triple
+    triple = nil
+    for number in @dice do
+      triple = number if @dice.count(number) >= 3
+    end
+    triple
+  end
+
+  def added_points_from_triple
+    added_points = 0
+    if triple
+      added_points += triple * 100 unless triple == 1
+      added_points += 1000 if triple == 1
+    end
+    added_points
+  end
+
+  def remaining_numbers
+    numbers = @dice.dup
+    if triple
+      3.times do 
+        numbers.delete_at(numbers.index(triple))
+      end
+    end
+    numbers
+  end
+
+  def added_points_from_remaining_numbers
+    added_points = 0
+    for number in remaining_numbers do
+      added_points += 0 unless number != 1 or number != 5
+      added_points += 100 if number == 1
+      added_points += 50 if number == 5
+    end
+    added_points
+  end
+
+  def calculate_score
+    score = 0
+    score += added_points_from_triple if triple
+    score += added_points_from_remaining_numbers
+  end
+
+end
+
 
 class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
