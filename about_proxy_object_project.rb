@@ -23,14 +23,7 @@ class Proxy
 
   def method_missing(method_name, *args)
     if object.respond_to?(method_name)
-      messages << method_name
-      if args.length == 1
-        object.__send__(method_name, args[0])
-      elsif args.length > 0
-        object.__send__(method_name, args)
-      else
-        object.__send__(method_name)
-      end
+      messages << method_name && object.__send__(method_name, *args)
     else
       raise NoMethodError
     end
